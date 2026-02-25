@@ -9,11 +9,22 @@ Both are valuable. Path A teaches you to direct agents. Path B teaches you how a
 
 ---
 
+## Choose your access model first (February 2026 snapshot)
+
+Before you begin, decide whether you want to use:
+
+- A subscription plan (fixed monthly pricing)
+- API credits/keys (pay per usage)
+
+In many cases, subscription tiers from providers like OpenAI, Anthropic, Google, or Cursor are enough to start quickly without separate API setup. If you build your own programmatic agent (Path B), you will need an API key.
+
+---
+
 ## Path A: Use Claude Code on a real project
 
 ### Prerequisites
 - Node.js installed
-- An Anthropic account (claude.ai)
+- Access to Claude Code (via supported Anthropic plan or API credits)
 - A project directory with some code in it (or start fresh)
 
 ### Step 1: Install Claude Code

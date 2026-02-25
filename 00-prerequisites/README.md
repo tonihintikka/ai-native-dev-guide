@@ -1,6 +1,18 @@
-# 00 — Prerequisites
+# 00 - Prerequisites
 
 Before you build anything with AI agents, you need a working foundation. This section gets you there.
+
+---
+
+## Pick your OS path first
+
+Everything in this section works on:
+
+- macOS
+- Windows
+- Linux
+
+Use the instructions for your operating system in each section.
 
 ---
 
@@ -9,11 +21,29 @@ Before you build anything with AI agents, you need a working foundation. This se
 - A terminal (command-line interface)
 - Git and a GitHub account
 - Node.js and npm
-- Python 3.12+
-- An Anthropic account and API key
-- VS Code (code editor)
+- Python 3.12+ (recommended)
+- VS Code (or another code editor)
+- Access to at least one AI assistant (Claude, Gemini, ChatGPT, Copilot, or similar)
+- Optional: an API key (only needed when you call model APIs from code)
 
 The rest of this section installs each one and shows you how to verify it works.
+
+---
+
+## Use AI as your setup copilot
+
+Do not set up your environment alone. Use AI while you install each tool.
+
+Example prompt you can paste into any assistant:
+
+```text
+I am setting up a dev environment on <macOS/Windows/Linux>.
+Help me install <tool> step by step.
+After each step, ask me for the command output before we continue.
+If there is an error, explain the fix in plain language.
+```
+
+Use this pattern for terminal setup, Git, Node.js, Python, and editor setup. It saves time and helps you troubleshoot quickly.
 
 ---
 
@@ -21,38 +51,63 @@ The rest of this section installs each one and shows you how to verify it works.
 
 The terminal is a text interface for your computer. Instead of clicking icons, you type commands. Most developer tools are designed to be run from the terminal.
 
-**Mac:** Open the built-in Terminal app. Press `Cmd + Space`, type "Terminal", hit Enter.
+**macOS:** Open the built-in Terminal app. Press `Cmd + Space`, type "Terminal", press Enter.
 
-**Windows:** Use PowerShell or Windows Terminal. Press `Win + X` and choose "Windows PowerShell", or install [Windows Terminal](https://aka.ms/terminal) from the Microsoft Store.
+**Windows:** Use PowerShell or Windows Terminal. Press `Win + X` and choose PowerShell, or install [Windows Terminal](https://aka.ms/terminal).
+
+**Linux:** Open your distro terminal app (for example, GNOME Terminal, Konsole, or Alacritty).
 
 ### Basic commands
 
 | Command | What it does |
 |---|---|
-| `pwd` | Print working directory — shows where you are |
-| `ls` (Mac) / `dir` (Windows) | List files in the current folder |
-| `cd folder-name` | Change directory — move into a folder |
+| `pwd` | Print working directory - shows where you are |
+| `ls` | List files in current folder (macOS, Linux, PowerShell) |
+| `dir` | List files in current folder (Windows cmd, PowerShell) |
+| `cd folder-name` | Move into a folder |
 | `cd ..` | Go up one level |
 
-Try them. Open your terminal and run `pwd`. You should see a file path like `/Users/yourname` or `C:\Users\yourname`. That's your home directory.
+Try them. Open your terminal and run `pwd`. You should see a path like `/Users/yourname`, `/home/yourname`, or `C:\Users\yourname`.
 
 ---
 
 ## Git
 
-Git is a version control tool. It tracks changes to your code over time. If you break something, you can go back. If you want to collaborate, everyone works from the same history.
+Git is version control. It tracks changes to your code over time.
 
-GitHub is a website where your Git repositories (projects) live in the cloud. It's where you store your work, share it, and deploy from.
+GitHub is where your Git repositories live in the cloud.
 
 You need both.
 
 ### Install Git
 
-Download from [https://git-scm.com/downloads](https://git-scm.com/downloads) and follow the installer for your OS.
+**macOS**
 
-Verify it works:
-
+```bash
+xcode-select --install
 ```
+
+Or install from [https://git-scm.com/downloads](https://git-scm.com/downloads).
+
+**Windows**
+
+Install Git for Windows from [https://git-scm.com/downloads](https://git-scm.com/downloads).
+
+**Linux**
+
+Install with your package manager:
+
+```bash
+# Ubuntu/Debian
+sudo apt update && sudo apt install -y git
+
+# Fedora
+sudo dnf install -y git
+```
+
+Verify:
+
+```bash
 git --version
 ```
 
@@ -60,9 +115,9 @@ You should see something like `git version 2.43.0`.
 
 ### Set your identity
 
-Git needs to know who you are before you make your first commit (a saved snapshot of changes):
+Git needs to know who you are before your first commit:
 
-```
+```bash
 git config --global user.name "Your Name"
 git config --global user.email "you@example.com"
 ```
@@ -72,54 +127,86 @@ git config --global user.email "you@example.com"
 | Command | What it does |
 |---|---|
 | `git init` | Start tracking a folder with Git |
-| `git add .` | Stage all changes (mark them for saving) |
+| `git add .` | Stage all changes |
 | `git commit -m "message"` | Save a snapshot with a description |
-| `git push` | Upload your commits to GitHub |
+| `git push` | Upload commits to GitHub |
 
 ### Create a GitHub account
 
-Go to [https://github.com](https://github.com) and sign up. It's free.
+Go to [https://github.com](https://github.com) and sign up. It is free.
 
-Full getting started guide: [https://docs.github.com/en/get-started](https://docs.github.com/en/get-started)
+Full getting-started guide: [https://docs.github.com/en/get-started](https://docs.github.com/en/get-started)
 
 ---
 
 ## Node.js and npm
 
-Node.js is a JavaScript runtime — it lets you run JavaScript outside of a browser, directly in the terminal. Most web development tools are built on it.
+Node.js lets you run JavaScript in the terminal. npm installs JavaScript libraries and tools.
 
-npm (Node Package Manager) comes bundled with Node.js. It installs JavaScript libraries and tools with a single command.
+### Install Node.js (LTS)
 
-### Install Node.js
+**macOS / Windows**
 
-Go to [https://nodejs.org](https://nodejs.org) and download the **LTS** version. LTS stands for Long Term Support — it's the stable version recommended for most users.
+Download and install the LTS version from [https://nodejs.org](https://nodejs.org).
 
-Run the installer, then verify:
+**Linux**
 
+Install from your distro repositories or NodeSource (LTS). Example:
+
+```bash
+# Ubuntu/Debian
+sudo apt update && sudo apt install -y nodejs npm
+
+# Fedora
+sudo dnf install -y nodejs npm
 ```
+
+Verify:
+
+```bash
 node --version
 npm --version
 ```
 
-You should see version numbers for both. If you do, Node.js and npm are ready.
+If both print versions, Node.js and npm are ready.
 
 ---
 
 ## Python
 
-Python is a programming language used widely for scripting, data work, and AI tooling. Many agent frameworks — including the Anthropic SDK — have Python support. You will need it.
+Python is widely used for scripting and AI tooling. You will use it in later sections.
 
-### Install Python
+### Install Python 3.12+
 
-Go to [https://python.org](https://python.org) and download version **3.12 or newer**.
+**macOS**
 
-**Mac:** The system Python is outdated. Always install from python.org.
+Download from [https://python.org](https://python.org). Do not rely on the system Python.
 
-**Windows:** During installation, check the box that says "Add Python to PATH." This lets you run Python from any terminal window.
+**Windows**
+
+Download from [https://python.org](https://python.org) and check "Add Python to PATH" during installation.
+
+**Linux**
+
+Install with your package manager:
+
+```bash
+# Ubuntu/Debian
+sudo apt update && sudo apt install -y python3 python3-venv python3-pip
+
+# Fedora
+sudo dnf install -y python3 python3-pip
+```
 
 Verify:
 
+```bash
+python3 --version
 ```
+
+If `python3` is not available on Windows, try:
+
+```bash
 python --version
 ```
 
@@ -127,113 +214,109 @@ You should see `Python 3.12.x` or newer.
 
 ### Virtual environments
 
-A virtual environment (venv) is an isolated folder where a project's Python packages are installed. Without it, packages from different projects can conflict. With it, each project manages its own dependencies cleanly.
+A virtual environment isolates project dependencies so packages from different projects do not conflict.
 
-Create a virtual environment in a project folder:
+Create:
 
+```bash
+python3 -m venv venv
 ```
-python -m venv venv
-```
 
-Activate it:
+Activate:
 
-```
-source venv/bin/activate      # Mac
+```bash
+source venv/bin/activate      # macOS/Linux
 venv\Scripts\activate         # Windows
 ```
 
-When active, your terminal prompt shows `(venv)`. Any packages you install with `pip install` go into that environment only.
-
-You will use this every time you work on a Python-based agent project.
+When active, your prompt usually shows `(venv)`.
 
 ---
 
-## An Anthropic account and API key
+## AI tools and optional API keys
 
-To use Claude — Anthropic's AI model — you need an account and an API key.
+You do **not** need an Anthropic API key to start learning.
 
-### Create an account
+You can begin with free tiers and browser tools, for example:
 
-Go to [https://console.anthropic.com](https://console.anthropic.com) and sign up.
+- Claude (web chat)
+- Gemini (web chat)
+- ChatGPT (web chat)
 
-### Get an API key
+Use whichever you prefer while setting up your environment.
 
-Inside the console, navigate to **API Keys** and create a new key. It will look like a long string starting with `sk-ant-...`. Copy it somewhere safe. You will only see it once.
+### API key vs subscription (February 2026 snapshot)
 
-An API key proves to Anthropic's servers that the requests come from you. It is tied to your account and your billing.
+You usually have two ways to access AI coding tools:
 
-### Costs
+- API key (pay per use)
+- Subscription (fixed monthly plan)
 
-**Claude Code** (the AI coding agent covered in this guide) requires either a [claude.ai Pro](https://claude.ai) subscription ($20/month) or Anthropic API credits.
+For many beginners, a subscription is the simpler place to start, and often competitive in price for daily use.
 
-If you are just getting started, API credits are the cheaper path. A $5–10 credit top-up is enough to experiment. You can add credits in the console under **Billing**.
+Examples:
 
-### Set the key as an environment variable
+- OpenAI ChatGPT subscription plans can include Codex-style coding workflows.
+- Anthropic has multiple plan tiers that can include Claude Code usage.
+- Google has Gemini plans for interactive use.
+- Cursor has license tiers with different agent usage limits.
 
-Never put your API key directly in your code. Never commit it to GitHub. If it ends up in a public repository, anyone can use it at your expense.
+For many people, around a 20 EUR/month tier is enough to get moving. Pick based on your usage pattern and compare current limits before committing.
 
-The right way is to store it as an environment variable — a value your operating system holds in memory that programs can read.
+### When do you need an API key?
 
-**Mac (temporary — current session only):**
+Only when you run code that calls a model provider API directly.
 
-```
-export ANTHROPIC_API_KEY=sk-ant-...
-```
+This guide includes Claude-specific sections later. For those sections, use an Anthropic account/API key. For setup and early learning, any assistant is fine.
 
-**Mac (permanent — add to your shell config):**
+### Environment variable examples (only if needed)
 
-```
-echo 'export ANTHROPIC_API_KEY=sk-ant-...' >> ~/.zshrc
-source ~/.zshrc
-```
+Never hardcode API keys in code and never commit them to GitHub.
 
-**Windows (permanent):**
+**macOS/Linux**
 
-```
-setx ANTHROPIC_API_KEY "sk-ant-..."
-```
-
-Restart your terminal after running `setx` on Windows.
-
-To verify the variable is set on Mac:
-
-```
-echo $ANTHROPIC_API_KEY
+```bash
+export ANTHROPIC_API_KEY=...
+export GEMINI_API_KEY=...
+export OPENAI_API_KEY=...
 ```
 
-It should print your key.
+**Windows**
+
+```bash
+setx ANTHROPIC_API_KEY "..."
+setx GEMINI_API_KEY "..."
+setx OPENAI_API_KEY "..."
+```
+
+Restart terminal after `setx`.
 
 ---
 
 ## A code editor
 
-You need a code editor — software built specifically for writing and reading code.
-
-The recommended choice is **VS Code** (Visual Studio Code). It is free, runs on Mac and Windows, and has strong support for every language in this guide.
+Use any editor you like. Recommended: **VS Code**.
 
 Download: [https://code.visualstudio.com](https://code.visualstudio.com)
 
-Install it and open a folder. That's all you need for now.
-
-Later sections cover AI-assisted editors like Cursor and Windsurf. Those are built on top of VS Code. You should be comfortable with a plain editor before adding AI features on top of it.
+Install it and open a folder. That is enough for now.
 
 ---
 
-## Signs you're ready
+## Signs you are ready
 
-Work through this checklist before moving on. Each item should pass without errors.
+Work through this checklist before moving on:
 
-- [ ] Terminal opens and you can run `pwd`
-- [ ] `git --version` prints a version number
-- [ ] `node --version` prints a version number
-- [ ] `npm --version` prints a version number
-- [ ] `python --version` prints 3.12 or newer
-- [ ] VS Code is installed and opens a folder
-- [ ] Anthropic account created at console.anthropic.com
-- [ ] API key generated and stored as an environment variable
+- [ ] Terminal opens and `pwd` works
+- [ ] `git --version` prints a version
+- [ ] `node --version` and `npm --version` print versions
+- [ ] `python3 --version` (or `python --version` on Windows) prints 3.12+
+- [ ] VS Code is installed and can open a folder
+- [ ] You can use at least one AI assistant (Claude, Gemini, ChatGPT, or similar)
+- [ ] Optional: you added an API key environment variable for the provider you plan to use in code
 
-If something fails, go back to that section and follow the install steps again. Don't skip errors — they will surface later at a worse time.
+If something fails, fix it now. Setup errors get more expensive later.
 
 ---
 
-Next: [01 — What Changed](../01-what-changed/)
+Next: [01 - What Changed](../01-what-changed/)
