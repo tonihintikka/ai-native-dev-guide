@@ -55,3 +55,11 @@ Every section follows the same rule: if it doesn't help you do something, it doe
 ## Contributing
 
 Open an issue or PR. The guide improves by staying close to what practitioners actually run into.
+
+---
+
+## Built with Claude Code
+
+This guide was written and maintained using [Claude Code](https://claude.ai/code) — Anthropic's agentic coding tool. The content, structure, and demo projects were produced through agent sessions, not manually typed line by line.
+
+That's intentional. A guide about agentic development should be built with agentic tools.
